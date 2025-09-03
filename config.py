@@ -18,6 +18,10 @@ if not GROQ_API_KEY:
     raise RuntimeError("GROQ_API_KEY missing in environment variables.")
 MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+LOG_TO_FILE = os.getenv("LOG_TO_FILE", "true").lower() == "true"
+
+
 # App configuration
 MODEL_PATH = "sales_forecast.pkl"
 

@@ -5,7 +5,7 @@ from typing import Optional, Dict
 from groq import Groq
 
 from config import GROQ_API_KEY, MODEL
-
+from logger import llm_logger
 client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT = """
@@ -46,6 +46,7 @@ async def llm_complete(system: str, user: str, temperature: float = 0.1) -> str:
     """
     try:
         # Run the LLM call in a thread pool to avoid blocking
+        llm_logger.debug(f"LLM request - System: {system[:100]}..., User: {user[:100]}...")
         loop = asyncio.get_event_loop()
         
         def _llm_call():
@@ -58,6 +59,7 @@ async def llm_complete(system: str, user: str, temperature: float = 0.1) -> str:
         resp = await loop.run_in_executor(None, _llm_call)
         return resp.choices[0].message.content.strip()
     except Exception as e:
+        llm_logger.error(f"LLM API error: {e}")
         raise Exception(f"LLM API error: {str(e)}")
 
 async def llm_complete_batch(system: str, user_messages: list, temperature: float = 0.1) -> list:

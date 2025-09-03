@@ -1,0 +1,17 @@
+2025-09-03 18:43:28,880 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 18:43:53,788 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales by year wise
+2025-09-03 18:44:04,602 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 18:44:25,950 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 18:44:25,954 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 18:45:29,366 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales by year using pie chart
+2025-09-03 18:45:35,086 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 18:45:44,330 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: (1054, "Unknown column 'order_date' in 'field list'")
+2025-09-03 18:45:44,334 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 18:46:35,980 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customer by country
+2025-09-03 18:47:36,577 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 18:47:55,130 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: Failed to connect to database: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+2025-09-03 18:47:55,132 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 18:48:13,462 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customer by country using pie chart
+2025-09-03 18:48:27,396 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 18:48:36,422 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 9 rows
+2025-09-03 18:48:36,428 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical

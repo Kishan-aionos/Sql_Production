@@ -8,6 +8,7 @@ import ssl
 import asyncio
 
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_CA_CERT
+from logger import db_logger
 
 # Allowed tables for queries
 ALLOWED_TABLES = {"orders", "order_details", "products", "categories", "customers"}

@@ -8,12 +8,15 @@ from typing import List, Dict, Any, Optional
 from database import get_sales_data_async as fetch_sales_data_from_db
 from llm_utils import llm_complete_async
 from config import MODEL
+from logger import forecast_logger
+
 
 async def get_sales_data_for_forecasting():
     """
     Fetch daily total sales from orders + order_details for forecasting.
     """
     try:
+        forecast_logger.info("Fetching sales data for forecasting")
         # Use the async database function with the renamed import
         result = await fetch_sales_data_from_db()
         
@@ -34,9 +37,11 @@ async def get_sales_data_for_forecasting():
         df["ds"] = pd.to_datetime(df["ds"], errors="coerce")
         df = df.dropna(subset=["ds"])
         print(f"Sales data loaded: {len(df)} rows")
+        forecast_logger.info(f"Sales data loaded: {len(df)} rows, from {df['ds'].min()} to {df['ds'].max()}")
         return df
        
     except Exception as e:
+        forecast_logger.error(f"Error fetching sales data: {e}")
         print(f"Error fetching sales data: {e}")
         return pd.DataFrame()
 
@@ -45,11 +50,14 @@ async def train_forecast_model_async(model_path: str = "sales_forecast.pkl"):
     Train the forecast model asynchronously
     """
     try:
+        
         # Get sales data asynchronously
+        forecast_logger.info("Starting forecast model training")
         df = await get_sales_data_for_forecasting()
         
         # Proper DataFrame emptiness check
         if df.empty or len(df) == 0:
+            forecast_logger.warning("No sales data found to train the model")
             return {
                 "success": False,
                 "message": "No sales data found to train the model"
@@ -60,6 +68,7 @@ async def train_forecast_model_async(model_path: str = "sales_forecast.pkl"):
         
         # Train model in executor
         def train_model():
+            forecast_logger.debug("Training Prophet model")
             model = Prophet()
             model.fit(df)
             return model

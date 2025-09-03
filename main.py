@@ -6,6 +6,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from prophet import Prophet
+from logger import api_logger, logger
 
 from config import MODEL_PATH
 from database import get_connection, run_sql_async, get_sales_data_async, get_table_stats_async
@@ -22,6 +23,9 @@ from forecast_utils import (
     generate_forecast_async, 
     generate_forecast_summary_async
 )
+
+
+
 from pydantic import BaseModel
 
 class NLQRequest(BaseModel):
@@ -41,6 +45,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+async def startup_event():
+    logger.info("Northwind API application starting up")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    logger.info("Northwind API application shutting down")
+
+
 # ================= Health Check =================
 @app.get("/health")
 async def health_check():
@@ -49,17 +63,21 @@ async def health_check():
         async with connection.cursor() as cur:
             await cur.execute("SELECT 1")
         connection.close()
+        api_logger.info("Health check successful - database connected")
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
+        api_logger.error(f"Health check failed: {e}")
         return {"status": "unhealthy", "database": "disconnected", "error": str(e)}
 
 # ================= Train Model Endpoint =================
 # ================= Train Model Endpoint =================
 @app.post("/train_forecast")
 async def train_forecast():
+    api_logger.info("Train forecast endpoint called")
     result = await train_forecast_model_async(MODEL_PATH)
     
     if not result["success"]:
+        api_logger.warning(f"Forecast training failed: {result['message']}")
         # Get debug info about the database asynchronously
         try:
             stats = await get_table_stats_async()
@@ -79,6 +97,7 @@ async def train_forecast():
             }
         )
     
+    api_logger.info("Forecast model trained successfully")
     return result
 
 
@@ -115,10 +134,13 @@ async def forecast_sales(periods: int = 30):
 # ================= Ask Endpoint =================
 @app.post("/ask")
 async def ask_question(body: NLQRequest):
+    api_logger.info(f"Ask endpoint called with question: {body.question}")
+    
     # Step 1: Process NLQ to SQL asynchronously
     nlq_result = await process_nlq_to_sql(body.question)
     
     if not nlq_result["success"]:
+        api_logger.error(f"NLQ processing failed: {nlq_result.get('error')}")
         return {
             "question": body.question,
             "intent": "Unknown",
@@ -132,28 +154,39 @@ async def ask_question(body: NLQRequest):
     message = nlq_result.get("message", "")
     chart = nlq_result.get("chart", "table")
 
+    api_logger.info(f"Question intent: {intent}, SQL generated: {sql_query is not None}")
+
     # Step 2: execute SQL if Historical
     result = None
     forecast_summary = None
     
     if intent == "Historical" and sql_query:
         try:
+            api_logger.debug(f"Executing historical SQL query: {sql_query}")
             result = await run_sql_async(sql_query)
+            api_logger.info(f"SQL query executed successfully, returned {len(result.get('rows', []))} rows")
         except Exception as e:
+            api_logger.error(f"SQL execution error: {e}")
             result = {"message": str(e)}
 
     # Step 3: forecasting logic
     elif intent == "Forecasting":
         try:
+            api_logger.info("Generating forecast for question")
             forecast_data = await generate_forecast_async(30, MODEL_PATH)
             forecast_summary = await generate_forecast_summary_async(body.question, forecast_data)
             result = forecast_data
+            api_logger.info(f"Forecast generated successfully: {len(forecast_data)} periods")
         except Exception as e:
             if "No trained model found" in str(e):
+                api_logger.warning("No trained forecast model found")
                 result = {"message": "No trained forecast model found. Please train the model first using /train_forecast endpoint."}
             else:
+                api_logger.error(f"Forecast generation error: {e}")
                 result = {"message": f"Forecast error: {str(e)}"}
 
+    api_logger.info(f"Question processing completed: intent={intent}")
+    
     return {
         "question": body.question,
         "intent": intent,
@@ -177,4 +210,5 @@ async def get_debug_stats():
 # ================= Run App =================
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    logger.info(f"Starting server on port {port}")
+    uvicorn.run(app, host="0.0.0.0", port=port, log_config=None)
