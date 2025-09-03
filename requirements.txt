@@ -1,0 +1,10 @@
+requests
+uvicorn
+fastapi
+pydantic
+groq
+pymysql
+aiomysql
+pandas
+prophet
+python-dotenv
