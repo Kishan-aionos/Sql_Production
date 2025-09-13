@@ -5,10 +5,10 @@ import asyncio
 from typing import List, Dict, Any, Optional
 
 # Import the database function with a different name to avoid conflict
-from database import get_sales_data_async as fetch_sales_data_from_db
-from llm_utils import llm_complete_async
-from config import MODEL
-from logger import forecast_logger
+from database_detail.database import get_sales_data_async as fetch_sales_data_from_db
+from llms.llm_utils import llm_complete_async
+from configs.config import MODEL
+from loggers.logger import forecast_logger
 
 
 async def get_sales_data_for_forecasting():

@@ -6,11 +6,12 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from prophet import Prophet
-from logger import api_logger, logger
+from loggers.logger import api_logger, logger
 
-from config import MODEL_PATH
-from database import get_connection, run_sql_async, get_sales_data_async, get_table_stats_async
-from llm_utils import (
+
+from configs.config import MODEL_PATH
+from database_detail.database import get_connection, run_sql_async, get_sales_data_async, get_table_stats_async
+from llms.llm_utils import (
     SYSTEM_PROMPT, 
     llm_complete_async, 
     extract_json_from_text, 
@@ -18,7 +19,7 @@ from llm_utils import (
     normalize_table_names,
     process_nlq_to_sql
 )
-from forecast_utils import (
+from forcast_d.forecast_utils import (
     train_forecast_model_async, 
     generate_forecast_async, 
     generate_forecast_summary_async
@@ -35,7 +36,7 @@ class ForecastRequest(BaseModel):
     periods: int = 30
 
 # Initialize FastAPI app
-app = FastAPI(title="Northwind NL→SQL + Forecast API", version="2.0")
+app = FastAPI(title="Northwind NL→SQL + Forecast API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -69,7 +70,7 @@ async def health_check():
         api_logger.error(f"Health check failed: {e}")
         return {"status": "unhealthy", "database": "disconnected", "error": str(e)}
 
-# ================= Train Model Endpoint =================
+
 # ================= Train Model Endpoint =================
 @app.post("/train_forecast")
 async def train_forecast():
@@ -78,7 +79,7 @@ async def train_forecast():
     
     if not result["success"]:
         api_logger.warning(f"Forecast training failed: {result['message']}")
-        # Get debug info about the database asynchronously
+        
         try:
             stats = await get_table_stats_async()
             debug_info = {

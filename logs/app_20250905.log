@@ -1,0 +1,9 @@
+2025-09-05 12:17:43,709 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-05 12:18:10,914 - northwind_app.api - INFO - main.py:67 - Health check successful - database connected
+2025-09-05 12:21:48,541 - northwind_app.api - INFO - main.py:138 - Ask endpoint called with question: hy
+2025-09-05 12:21:50,046 - northwind_app.api - ERROR - main.py:144 - NLQ processing failed: Could not parse response from AI model
+2025-09-05 12:22:01,292 - northwind_app.api - INFO - main.py:138 - Ask endpoint called with question: Show total sales by month
+2025-09-05 12:22:01,834 - northwind_app.api - INFO - main.py:158 - Question intent: Historical, SQL generated: True
+2025-09-05 12:22:02,863 - northwind_app.api - INFO - main.py:168 - SQL query executed successfully, returned 25 rows
+2025-09-05 12:22:02,864 - northwind_app.api - INFO - main.py:189 - Question processing completed: intent=Historical
+2025-09-05 12:22:45,706 - northwind_app - INFO - main.py:56 - Northwind API application shutting down

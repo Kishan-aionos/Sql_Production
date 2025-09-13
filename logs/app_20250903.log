@@ -1,17 +1,57 @@
-2025-09-03 18:43:28,880 - northwind_app - INFO - main.py:51 - Northwind API application starting up
-2025-09-03 18:43:53,788 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales by year wise
-2025-09-03 18:44:04,602 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
-2025-09-03 18:44:25,950 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
-2025-09-03 18:44:25,954 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
-2025-09-03 18:45:29,366 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales by year using pie chart
-2025-09-03 18:45:35,086 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
-2025-09-03 18:45:44,330 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: (1054, "Unknown column 'order_date' in 'field list'")
-2025-09-03 18:45:44,334 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
-2025-09-03 18:46:35,980 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customer by country
-2025-09-03 18:47:36,577 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
-2025-09-03 18:47:55,130 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: Failed to connect to database: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
-2025-09-03 18:47:55,132 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
-2025-09-03 18:48:13,462 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customer by country using pie chart
-2025-09-03 18:48:27,396 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
-2025-09-03 18:48:36,422 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 9 rows
-2025-09-03 18:48:36,428 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:20:07,945 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 20:20:10,564 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 20:20:11,215 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 20:20:13,366 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 20:20:42,368 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: List top 5 products by revenue using pie
+2025-09-03 20:20:43,244 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:20:44,318 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5 p.product_name, SUM(od.quantity * p.unit_price) AS revenue FROM products p INN' at line 1")
+2025-09-03 20:20:44,318 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:20:51,151 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: List top 5 products by revenue.
+2025-09-03 20:20:51,731 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:20:52,592 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 5 rows
+2025-09-03 20:20:52,592 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:21:11,858 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: List top 5 products by revenue line ghap
+2025-09-03 20:21:14,623 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:21:17,968 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5 p.product_name, SUM(od.quantity * od.unit_price) AS revenue FROM products p IN' at line 1")
+2025-09-03 20:21:17,968 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:27:12,648 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 20:27:15,691 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 20:27:33,115 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: List top 5 products by revenue using pie chart
+2025-09-03 20:27:34,061 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:27:34,986 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 5 rows
+2025-09-03 20:27:34,990 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:28:11,586 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using pie chart
+2025-09-03 20:28:13,059 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:28:14,104 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 20:28:14,105 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:28:22,551 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using bar graph
+2025-09-03 20:28:25,243 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:28:26,185 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 20:28:26,185 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:34:53,776 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 20:34:55,816 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 20:36:10,885 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 20:36:13,150 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 20:42:56,785 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using bar graph
+2025-09-03 20:42:58,295 - northwind_app.api - ERROR - main.py:143 - NLQ processing failed: Could not parse response from AI model
+2025-09-03 20:42:58,430 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using pie chart
+2025-09-03 20:42:59,611 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:43:00,875 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 20:43:00,876 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:44:03,146 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using bar graph
+2025-09-03 20:44:04,280 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:44:04,519 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using pie chart
+2025-09-03 20:44:05,145 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-03 20:44:05,584 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 20:44:05,585 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 20:44:07,347 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-03 20:44:07,348 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-03 22:25:19,353 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 22:25:35,832 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-03 22:31:05,928 - northwind_app - INFO - logger_detail.py:5 - General information
+2025-09-03 22:31:05,928 - northwind_app - WARNING - logger_detail.py:6 - Warning message
+2025-09-03 22:31:05,929 - northwind_app - ERROR - logger_detail.py:7 - Error message
+2025-09-03 22:31:05,929 - northwind_app - CRITICAL - logger_detail.py:8 - Critical error
+2025-09-03 22:40:14,123 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-03 22:40:16,205 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-04 07:11:14,756 - northwind_app - INFO - main.py:55 - Northwind API application shutting down

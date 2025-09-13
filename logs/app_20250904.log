@@ -1,0 +1,104 @@
+2025-09-04 07:20:39,634 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-04 07:24:37,673 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-04 07:24:41,071 - northwind_app - INFO - main.py:51 - Northwind API application starting up
+2025-09-04 07:30:54,861 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Show total sales by month
+2025-09-04 07:31:34,479 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 07:31:36,626 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 25 rows
+2025-09-04 07:31:36,627 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 07:32:06,080 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Show total sales by month using pie chart
+2025-09-04 07:32:07,455 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 07:32:08,331 - northwind_app.api - ERROR - main.py:169 - SQL execution error: Database error: (1054, "Unknown column 'order_date' in 'field list'")
+2025-09-04 07:32:08,332 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 07:32:30,364 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Show total sales by month using pie chart
+2025-09-04 07:32:30,892 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 07:32:32,071 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 25 rows
+2025-09-04 07:32:32,071 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 12:35:55,269 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customers by region
+2025-09-04 12:35:57,742 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 12:36:06,344 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-04 12:36:06,345 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 12:36:18,363 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: customers by region using pie chart
+2025-09-04 12:36:23,090 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 12:36:27,278 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-04 12:36:27,279 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 12:45:47,642 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales year wise using pie chart
+2025-09-04 12:45:50,339 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 12:45:53,017 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-04 12:45:53,018 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 12:46:36,430 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: sales on the month
+2025-09-04 12:46:38,537 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 12:46:42,584 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 25 rows
+2025-09-04 12:46:42,584 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 15:34:33,245 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Predict sales for next quarter
+2025-09-04 15:34:34,679 - northwind_app.llm - ERROR - llm_utils.py:78 - LLM API error: Connection error.
+2025-09-04 15:34:34,714 - northwind_app.api - ERROR - main.py:143 - NLQ processing failed: NLQ processing error: LLM API error: Connection error.
+2025-09-04 15:36:04,109 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Predict sales for next quarter
+2025-09-04 15:36:05,274 - northwind_app.api - INFO - main.py:157 - Question intent: Forecasting, SQL generated: True
+2025-09-04 15:36:05,276 - northwind_app.api - INFO - main.py:175 - Generating forecast for question
+2025-09-04 15:36:07,237 - northwind_app.api - INFO - main.py:179 - Forecast generated successfully: 30 periods
+2025-09-04 15:36:07,238 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Forecasting
+2025-09-04 15:36:18,620 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: Predict sales for next quarter use bar graph
+2025-09-04 15:36:19,947 - northwind_app.api - INFO - main.py:157 - Question intent: Forecasting, SQL generated: True
+2025-09-04 15:36:19,949 - northwind_app.api - INFO - main.py:175 - Generating forecast for question
+2025-09-04 15:36:20,942 - northwind_app.api - INFO - main.py:179 - Forecast generated successfully: 30 periods
+2025-09-04 15:36:20,943 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Forecasting
+2025-09-04 17:13:55,571 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: show total customer by region using pie chart
+2025-09-04 17:13:57,141 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 17:13:58,417 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 3 rows
+2025-09-04 17:13:58,418 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 17:17:41,795 - northwind_app.api - INFO - main.py:137 - Ask endpoint called with question: show total sales by country wise using pie chart
+2025-09-04 17:17:42,920 - northwind_app.api - INFO - main.py:157 - Question intent: Historical, SQL generated: True
+2025-09-04 17:17:43,956 - northwind_app.api - INFO - main.py:167 - SQL query executed successfully, returned 9 rows
+2025-09-04 17:17:43,958 - northwind_app.api - INFO - main.py:188 - Question processing completed: intent=Historical
+2025-09-04 21:26:02,868 - northwind_app - INFO - main.py:55 - Northwind API application shutting down
+2025-09-04 21:26:08,532 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 21:26:22,413 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 21:26:26,152 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 21:51:39,964 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 21:51:44,222 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 21:52:05,997 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 21:52:10,528 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 21:57:54,229 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 21:58:01,601 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 21:58:12,072 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 21:58:21,837 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:00:01,868 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:00:05,942 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:00:33,496 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:00:41,415 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:01:16,938 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:01:21,663 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:02:13,654 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:02:18,847 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:02:20,988 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:03:04,229 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:03:51,628 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:04:00,459 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:04:01,004 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:04:05,077 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:04:09,867 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:04:13,784 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:04:15,860 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:04:26,057 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:04:30,116 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:04:33,950 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:05:52,207 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:05:56,493 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:05:57,133 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:06:01,037 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:06:55,854 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:06:59,250 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:07:19,232 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:07:28,986 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:07:28,987 - northwind_app - INFO - main.py:56 - Northwind API application shutting down
+2025-09-04 22:07:32,765 - northwind_app - INFO - main.py:52 - Northwind API application starting up
+2025-09-04 22:08:02,060 - northwind_app.api - INFO - main.py:138 - Ask endpoint called with question: List top 5 products by revenue
+2025-09-04 22:08:04,478 - northwind_app.api - INFO - main.py:158 - Question intent: Historical, SQL generated: True
+2025-09-04 22:08:06,505 - northwind_app.api - INFO - main.py:168 - SQL query executed successfully, returned 5 rows
+2025-09-04 22:08:06,507 - northwind_app.api - INFO - main.py:189 - Question processing completed: intent=Historical
+2025-09-04 22:09:45,481 - northwind_app.api - INFO - main.py:138 - Ask endpoint called with question: Predict sales for next quarter
+2025-09-04 22:09:47,705 - northwind_app.api - INFO - main.py:158 - Question intent: Forecasting, SQL generated: True
+2025-09-04 22:09:47,707 - northwind_app.api - INFO - main.py:176 - Generating forecast for question
+2025-09-04 22:09:49,673 - northwind_app.api - INFO - main.py:180 - Forecast generated successfully: 30 periods
+2025-09-04 22:09:49,674 - northwind_app.api - INFO - main.py:189 - Question processing completed: intent=Forecasting
+2025-09-05 11:56:33,592 - northwind_app - INFO - main.py:56 - Northwind API application shutting down

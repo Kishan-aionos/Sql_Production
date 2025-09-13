@@ -11,7 +11,7 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "AVNS_MWRv5iMXRum9DMQ6cPV")
 DB_NAME = os.getenv("DB_NAME", "defaultdb")
 DB_CA_CERT = os.getenv("DB_CA_CERT")
-
+LANGSMITH_API=os.getenv('LANGSMITH_API_KEY')
 # LLM configuration
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:

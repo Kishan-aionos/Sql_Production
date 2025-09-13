@@ -3,13 +3,20 @@ import json
 import asyncio
 from typing import Optional, Dict
 from groq import Groq
+from langsmith import traceable
+from langsmith.wrappers import wrap_openai
+from configs.config import GROQ_API_KEY, MODEL,LANGSMITH_API
+from loggers.logger import llm_logger
 
-from config import GROQ_API_KEY, MODEL
-from logger import llm_logger
+
+
 client = Groq(api_key=GROQ_API_KEY)
+# wrapped_client = wrap_openai(client)
 
 SYSTEM_PROMPT = """
-You are an assistant that converts natural language to SQL queries using ONLY the Northwind database schema.
+You are an assistant that converts natural language to SQL queries using ONLY the Northwind database schema for MySQL database.
+
+CRITICAL: You MUST use MySQL syntax, not SQL Server or other dialects.
 
 Tables:
 - customers(customer_id, company_name, contact_name, country, region)
@@ -18,18 +25,23 @@ Tables:
 - orders(order_id, customer_id, order_date, ship_country, ship_region)
 - order_details(order_id, product_id, unit_price, quantity, discount)
 
-Rules:
-1. If the user explicitly requests a chart type (e.g., "show as bar chart", "pie chart", "line graph"), then always return that exact chart in the `chart` field.
-2. If the question is about future prediction, trends, or forecasting → return intent="Forecasting", sql=null, chart="line" unless the user specifies another chart.
-3. If the question is about past/historical data → return intent="Historical" and a valid SQL query.
-4. If schema doesn't support the question → return intent="Unknown", sql=null, chart=null, with a helpful message.
-5. If the user did not specify chart type, infer it:
-   - If the query involves time series (dates, months, years) → chart="line" (for trends) or "bar" (for discrete comparison).
-   - If the query compares categories (products, regions, customers) → chart="bar".
-   - If the query shows proportions or shares → chart="pie".
-   - If the query returns two numeric values (e.g., sales vs profit) → chart="scatter".
-   - If unclear → chart="table".
-6. Only answer questions related to the database schema. For any other topics, return intent="Unknown".
+MySQL-SPECIFIC SYNTAX RULES:
+1. Use LIMIT for row limiting: LIMIT 5 NOT TOP 5
+2. Use IFNULL() instead of ISNULL()
+3. Use backticks ` for quoting if needed: `order_date`
+4. Use CONCAT() for string concatenation
+5. Use DATE_FORMAT() for date formatting
+
+Revenue calculation formula:
+order_details.quantity * order_details.unit_price * (1 - IFNULL(order_details.discount, 0))
+
+Chart selection rules:
+1. If user specifies chart type → use that chart
+2. Top N lists/comparisons → bar chart
+3. Proportions/percentages → pie chart  
+4. Time trends → line chart
+5. Relationships → scatter plot
+6. Default → table
 
 Response format must be valid JSON:
 {
@@ -38,14 +50,18 @@ Response format must be valid JSON:
     "message": "Explanation if needed",
     "chart": "line|bar|pie|scatter|table|null"
 }
+
+Examples:
+- "Top 5 products by revenue" → Use LIMIT 5, chart=bar
+- "Top 5 products by revenue with pie chart" → Use LIMIT 5, chart=pie
+- "Sales by month" → Use DATE_FORMAT(), chart=line
 """
 
+@traceable(run_type="llm",name="Groq Completion")
 async def llm_complete(system: str, user: str, temperature: float = 0.1) -> str:
-    """
-    Async version of LLM completion using thread pool
-    """
+
     try:
-        # Run the LLM call in a thread pool to avoid blocking
+        
         llm_logger.debug(f"LLM request - System: {system[:100]}..., User: {user[:100]}...")
         loop = asyncio.get_event_loop()
         
